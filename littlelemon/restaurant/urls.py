@@ -5,7 +5,7 @@ from . import views
 
 
 router = DefaultRouter(trailing_slash=False)
-router.register("user", views.UserViewSet, basename="user")
+router.register("users", views.UserViewSet, basename="user")
 router.register("menu-items", views.MenuViewSet, basename="menu-items")
 router.register("bookings", views.BookingViewSet, basename="bookings")
 
