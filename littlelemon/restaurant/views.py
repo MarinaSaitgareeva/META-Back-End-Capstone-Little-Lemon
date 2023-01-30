@@ -30,6 +30,13 @@ class BookingViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    
+    def get_permissions(self):
+        if self.request.method in ["GET", "POST"]:
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [IsAdmin | IsManager]
+        return [permission() for permission in permission_classes]
 
 
 class UserViewSet(viewsets.ModelViewSet):
