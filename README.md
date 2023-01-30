@@ -186,8 +186,14 @@ POST http://127.0.0.1:8000/auth/token/login/
 | /restaurant/bookings/{bookingId} | Not Manager | DELETE     | Returns 403 - Unauthorized  |
 | /restaurant/bookings             | Manager     | GET        | Returns all bookings        |
 | /restaurant/bookings             | Manager     | POST       | Creates a new booking       |
-| /api/orders/{orderId}            | Manager     | PUT, PATCH | Updates the booking         |
-| /api/orders/{orderId}            | Manager     | DELETE     | Deletes the booking         |
+| /restaurant/bookings/{bookingId} | Manager     | PUT, PATCH | Updates the booking         |
+| /restaurant/bookings/{bookingId} | Manager     | DELETE     | Deletes the booking         |
+
+#### Home endpoints
+
+http://127.0.0.1:8000/restaurant/home/
+
+- Serve static HTML content - homepage template.
 
 ### Author
 
