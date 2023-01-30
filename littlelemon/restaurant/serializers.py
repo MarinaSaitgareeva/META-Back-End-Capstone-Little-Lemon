@@ -25,4 +25,8 @@ class BookingSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "groups", "url"]
+        fields = ["id", "username", "password", "email", "first_name", "last_name", "is_active", "is_staff", "groups", "url"]
+        extra_kwargs = {
+            "password": {"write_only": True},
+            # "is_active": {"read_only": True},
+        }
