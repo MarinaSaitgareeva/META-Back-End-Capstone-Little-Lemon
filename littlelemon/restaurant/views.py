@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from .models import Menu, Booking
 from .serializers import MenuSerializer, BookingSerializer, UserSerializer
+from .permissions import IsAdmin, IsManager, IsCustomer, ReadOnly
 
 
 # Create your views here.
@@ -16,6 +17,13 @@ def index(request):
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+    
+    def get_permissions(self):
+        if self.request.method == "GET":
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [IsAdmin | IsManager]
+        return [permission() for permission in permission_classes]
 
 
 class BookingViewSet(viewsets.ModelViewSet):
@@ -25,6 +33,6 @@ class BookingViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdmin]
     queryset = User.objects.all()
     serializer_class = UserSerializer
