@@ -12,7 +12,7 @@ router.register("bookings", views.BookingViewSet, basename="bookings")
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("", views.index, name="index"),
+    path("home/", views.index, name="index"),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api-token-auth/", obtain_auth_token),  
 ]
